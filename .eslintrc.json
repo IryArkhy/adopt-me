@@ -13,9 +13,11 @@
   // указать плагины, которые ты установила, плагины - это новые возможности для eslint,
   "rules": {
     "react/prop-types": 0,
-    "no-console": 1
+    "no-console": 1,
+    "react-hooks/rules-of-hooks": 2,
+    "react-hooks/exhaustive-deps": 1
   },
-  "plugins": ["react", "import", "jsx-a11y"],
+  "plugins": ["react", "import", "jsx-a11y", "react-hooks"],
   "parserOptions": {
     // so we can use es6 in syntax
     "ecmaVersion": 2018,
