@@ -1,0 +1,20 @@
+{
+  "extends": ["eslint:recommended", "prettier", "prettier/react"],
+  "plugins": [],
+  "parserOptions": {
+    // so we can use es6 in syntax
+    "ecmaVersion": 2018,
+    // we use export/import syntax
+    "sourceType": "module",
+    // we're going to write jsx
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  //defining global variables
+  "env": {
+    "es6": true, // for async await features
+    "browser": true, // to use browser API (e.g. setTimeout())
+    "node": true // for the thing you write for the server side like SSR: http module, require syntax etc.
+  }
+}
