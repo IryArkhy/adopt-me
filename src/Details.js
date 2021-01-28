@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import pet from "@frontendmasters/pet";
 import Carousel from "./Carousel";
+import ErrorBoundry from "./ErrorBoundary";
 
 class Details extends Component {
   // вот этот синтаксис очень неудобный. Чтобы писать меньше кода - нужно настроить babel
@@ -16,6 +17,7 @@ class Details extends Component {
   state = { loading: true, name: "" };
 
   componentDidMount() {
+    // throw new Error("Check error Boundry component");
     // runs only once when I first get created
     // AJAX request
 
@@ -57,4 +59,11 @@ class Details extends Component {
   }
 }
 
-export default Details;
+// HOC
+export default function DetailsWithErrorBoundry(props) {
+  return (
+    <ErrorBoundry>
+      <Details {...props} />
+    </ErrorBoundry>
+  );
+}
