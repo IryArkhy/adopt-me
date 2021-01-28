@@ -1,0 +1,13 @@
+{
+  // preset is a group of plugins!
+  "presets": [
+    // это даст тебе tools, которые помогут транспилировать Реакт, JSX, Flow
+    "@babel/preset-react",
+
+    // this will transpile your code for the environment you specify ("browserslist" in package.json)
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
+  ]
+}

@@ -18,6 +18,8 @@
     "react-hooks/exhaustive-deps": 1
   },
   "plugins": ["react", "import", "jsx-a11y", "react-hooks"],
+  // мы добавили новую эксперементальную фичу (краткий синтаксис конструктора и состояния для классовых компонентов), который eslint не понимает! Поэтому мы говорим eslint "Используй babel, чтобы понять этот синтаксис"
+  "parser": "babel-eslint",
   "parserOptions": {
     // so we can use es6 in syntax
     "ecmaVersion": 2018,
