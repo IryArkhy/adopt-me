@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import pet from "@frontendmasters/pet";
 import Carousel from "./Carousel";
 import ErrorBoundry from "./ErrorBoundary";
+import ThemeContext from "./ThemeContext";
 
 class Details extends Component {
   // вот этот синтаксис очень неудобный. Чтобы писать меньше кода - нужно настроить babel
@@ -51,7 +52,12 @@ class Details extends Component {
         <div>
           <h1>{name}</h1>
           <h2>{`${animal} — ${breed} — ${location}`}</h2>
-          <button>Adopt {name}</button>
+          {/* Using Context with Class Components */}
+          <ThemeContext.Consumer>
+            {([theme]) => (
+              <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+            )}
+          </ThemeContext.Consumer>
           <p>{description}</p>
         </div>
       </div>
