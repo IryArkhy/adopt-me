@@ -4,6 +4,7 @@ import { Link, Router } from "@reach/router";
 import SearchParams from "./SearchParams";
 import Details from "./Details";
 import ThemeContext from "./ThemeContext";
+import Hooks from "./hooksInDepth/hooksInDepth";
 
 const App = () => {
   const themeHook = useState("peru");
@@ -20,6 +21,7 @@ const App = () => {
             {/* React router uses a Switch component and will render the first match so the order in React router IS important */}
             <SearchParams path="/" />
             <Details path="/details/:id" />
+            <Hooks path="/hooks" />
           </Router>
         </div>
       </ThemeContext.Provider>
