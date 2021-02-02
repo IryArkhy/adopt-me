@@ -1,36 +1,21 @@
-import React, { Component } from "react";
+import React, { Component, lazy } from "react";
 import pet from "@frontendmasters/pet";
 import { navigate } from "@reach/router";
 import Carousel from "./Carousel";
 import ErrorBoundry from "./ErrorBoundary";
 import ThemeContext from "./ThemeContext";
-import Modal from "./Modal";
+// import Modal from "./Modal";
+
+// Lazy load components as well as routs
+const Modal = lazy(() => import("./Modal"));
 
 class Details extends Component {
-  // вот этот синтаксис очень неудобный. Чтобы писать меньше кода - нужно настроить babel
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     loading: true,
-  //   };
-  // }
-
-  // with babel it'll look like this
   state = { loading: true, name: "", showModal: false };
 
   componentDidMount() {
-    // throw new Error("Check error Boundry component");
-    // runs only once when I first get created
-    // AJAX request
-
-    //!!! it's required to use an arrow function here
-    // if I use a regular function it'll create a new context and this != Details Component
-    // arrow functions do not create a new context
     pet.animal(this.props.id).then(
       ({ animal }) =>
         this.setState({
-          // shalow merge: Object.assign(oldState, newState). If I have nested objects - they will NOT be overwritten so setState does only top level
           name: animal.name,
           url: animal.url,
           animal: animal.type,

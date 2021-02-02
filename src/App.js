@@ -1,29 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { render } from "react-dom";
 import { Link, Router } from "@reach/router";
-import SearchParams from "./SearchParams";
-import Details from "./Details";
+// import SearchParams from "./SearchParams";
+// import Details from "./Details";
 import ThemeContext from "./ThemeContext";
+
+const Details = lazy(() => import("./Details"));
+const SearchParams = lazy(() => import("./SearchParams"));
 
 const App = () => {
   const themeHook = useState("peru");
 
   return (
-    <React.StrictMode>
-      <ThemeContext.Provider value={themeHook}>
-        <div>
-          <header>
-            <Link to="/">Adopt me!</Link>
-          </header>
+    <ThemeContext.Provider value={themeHook}>
+      <div>
+        <header>
+          <Link to="/">Adopt me!</Link>
+        </header>
+        {/* You can use multiple suspense as well as just top level one */}
+        <Suspense fallback={<h1>loading route …</h1>}>
           <Router>
-            {/* Reach router has a scoring algorithm so it does not matter in which order you place your components */}
-            {/* React router uses a Switch component and will render the first match so the order in React router IS important */}
             <SearchParams path="/" />
             <Details path="/details/:id" />
           </Router>
-        </div>
-      </ThemeContext.Provider>
-    </React.StrictMode>
+        </Suspense>
+      </div>
+    </ThemeContext.Provider>
   );
 };
 
