@@ -12,21 +12,19 @@ const SearchParams = () => {
   const [pets, setPets] = useState([]);
   const [theme, setTheme] = useContext(ThemeContext);
 
-  // async functions return a Promise
-  async function requestPets() {
-    const { animals } = await pet.animals({ location, breed, type: animal });
-
-    setPets(animals || []);
+  function requestPets() {
+    pet
+      .animals({ location, breed, type: animal })
+      .then(({ animals }) => setPets(animals || []));
   }
 
-  // useEffect is disconnected from when the render is happening. useEffect is scheduling this function to run after the render happens. So: first render -> useEffect function (but not immidiately, after some time)
   useEffect(() => {
     setBreeds([]);
     setBreed("");
     pet.breeds(animal).then(({ breeds }) => {
       const breedStrings = breeds.map(({ name }) => name);
       setBreeds(breedStrings);
-    }, console.error); // same as (err) => console.error(err)
+    }, console.error);
   }, [animal, setBreeds, setBreed]);
 
   function handleSubmit(e) {
