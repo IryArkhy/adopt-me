@@ -2,12 +2,25 @@
   // preset is a group of plugins!
   "presets": [
     // это даст тебе tools, которые помогут транспилировать Реакт, JSX, Flow
-    "@babel/preset-react",
-
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic",
+        "importSource": "@emotion/react"
+      }
+    ],
     // this will transpile your code for the environment you specify ("browserslist" in package.json)
     "@babel/preset-env"
-  ],
+],
   "plugins": [
+    [
+      "transform-inline-environment-variables"
+    ],
+    [
+      "@emotion", {
+        "sourceMap": false
+      }
+    ],
     "@babel/plugin-proposal-class-properties"
   ]
 }
