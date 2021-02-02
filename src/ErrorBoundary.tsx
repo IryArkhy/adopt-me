@@ -1,23 +1,20 @@
-import React, { Component } from "react";
-import { Link, Redirect } from "@reach/router";
+import React, { Component, ErrorInfo } from "react";
+import { Link, Redirect, RouteComponentProps } from "@reach/router";
 
 // https://reactjs.org/docs/error-boundaries.html
 
 class ErrorBoundary extends Component {
-  state = { hasError: false, redirect: false };
+  public state = { hasError: false, redirect: false };
 
-  static getDerivedStateFromError() {
+  public static getDerivedStateFromError() {
     return { hasError: true };
   }
-  // a react method so it can be a regular function
-  componentDidCatch(error, info) {
+
+  public componentDidCatch(error: Error, info: ErrorInfo) {
     console.error("ErrorBoundary caught an error", error, info);
   }
 
-  // you can also replace componentDidCath with componentdidUpdate
-
-  // to clean up things before the component leaves the DOM. Но сначала сработает getDerivedStateFromError и изменит стейт сообщая, что есть ошибка
-  componentDidUpdate() {
+  public componentDidUpdate() {
     if (this.state.hasError) {
       setTimeout(() => this.setState({ redirect: true }), 5000);
     }
@@ -35,7 +32,6 @@ class ErrorBoundary extends Component {
         </h1>
       );
     }
-    // если нет ошибки: просто передай дальше всех своих детей и потомков
     return this.props.children;
   }
 }
