@@ -5,6 +5,7 @@ const LayoutEffectComponent = () => {
   const [height, setHeight] = useState(0);
   const el = useRef();
 
+  // this is only usefull if you need to measure something in the DOM
   useLayoutEffect(() => {
     setWidth(el.current.clientWidth);
     setHeight(el.current.clientHeight);
@@ -17,6 +18,7 @@ const LayoutEffectComponent = () => {
       <h2>textarea height: {height}px</h2>
       <textarea
         onClick={() => {
+          // this kicks off the re-render that allows to measure it
           setWidth(0);
         }}
         ref={el}

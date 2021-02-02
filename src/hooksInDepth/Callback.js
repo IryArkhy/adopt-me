@@ -1,6 +1,8 @@
 /* eslint-disable react/display-name */
 import React, { useState, useEffect, useCallback, memo } from "react";
 
+// memo() for functions = Pure Component for Classes
+// as long as my props have not changed - do not re-render me
 const ExpensiveComputationComponent = memo(({ compute, count }) => {
   return (
     <div>
@@ -26,6 +28,9 @@ const CallbackComponent = () => {
     return fibonacci(n - 1) + fibonacci(n - 2);
   };
 
+  // returns memoized function
+  const fibonacciWithHook = useCallback(fibonacci, []);
+
   return (
     <div>
       <h1>useCallback Example {time.toLocaleTimeString()}</h1>
@@ -33,7 +38,7 @@ const CallbackComponent = () => {
         current count: {count}
       </button>
       <ExpensiveComputationComponent
-        compute={useCallback(fibonacci, [])}
+        compute={fibonacciWithHook}
         count={count}
       />
     </div>

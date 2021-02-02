@@ -7,6 +7,7 @@ const limitRGB = (num) => (num < 0 ? 0 : num > 255 ? 255 : num);
 const step = 50;
 
 const reducer = (state, action) => {
+  // Reducer is the function that takes in an old state + some sort of action and returns a new state.
   switch (action.type) {
     case "INCREMENT_R":
       return Object.assign({}, state, { r: limitRGB(state.r + step) });

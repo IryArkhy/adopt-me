@@ -12,8 +12,13 @@ const fibonacci = (n) => {
 };
 
 const MemoComponent = () => {
-  const [num, setNum] = useState(1);
+  const [num, setNum] = useState(40);
   const [isGreen, setIsGreen] = useState(true);
+  // without useMemo
+  // const fib = fibonacci(num);
+
+  // with useMemo
+  //  Если я не использую useMemo, то при клике на кнопку, чтобы изменить цвет происходи пересчет числа фибоначи. Пока функция не вернет результат - ре-рендер не произойдет, даже если число, от которого высчитывается фибоначи не поменялось с прошлого рендера. По сути, что мы говорим: "Если аргумент функции не поменялся с прошлого рендера, не нужно снова высчитывать результат функции, чтобы произвести ре-рендер"
   const fib = useMemo(() => fibonacci(num), [num]);
 
   return (
